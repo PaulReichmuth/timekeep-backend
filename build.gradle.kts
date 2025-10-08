@@ -3,7 +3,7 @@
  */
 
 plugins {
-    `java-library`
+    id("java-library")
     `maven-publish`
     id("io.freefair.lombok") version "9.0.0"
 }
@@ -42,4 +42,13 @@ tasks.withType<JavaCompile>() {
 
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
+}
+
+tasks.test {
+    failOnNoDiscoveredTests = false
+    failFast = true
+}
+
+tasks.build {
+
 }
