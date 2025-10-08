@@ -1,12 +1,13 @@
 package de.pnreichmuth.timekeep_backend.services;
 
 import de.pnreichmuth.timekeep_backend.entities.Team;
+import de.pnreichmuth.timekeep_backend.exceptions.TeamExistsException;
+import de.pnreichmuth.timekeep_backend.exceptions.TeamNotFoundException;
 import de.pnreichmuth.timekeep_backend.repositories.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.rmi.NoSuchObjectException;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,9 @@ public class TeamService {
     }
 
     public Team getTeam(String name){
-        return teamRepository.getTeamByTeamName(name);
+        Team team = teamRepository.getTeamByTeamName(name).orElse(null);
+        if(team == null) throw new TeamNotFoundException("Team "+name+" not found");
+        return team;
     }
 
     public List<Team> getTeams(){
@@ -36,6 +39,9 @@ public class TeamService {
     }
 
     public void createTeam(Team team){
+        if(teamRepository.existsByTeamName(team.getTeamName())){
+            throw new TeamExistsException("A team by this name already exists.", team);
+        }
         teamRepository.save(team);
         log.info("Team created: {}", team);
     }
@@ -47,13 +53,13 @@ public class TeamService {
         log.info("Team created: {}", tempTeam);
     }
 
-    public void deleteTeam(UUID id) throws NoSuchObjectException{
-        if(!teamRepository.existsById(id)) throw new NoSuchObjectException("Team not found");
+    public void deleteTeam(UUID id) throws TeamNotFoundException {
+        if(!teamRepository.existsById(id)) throw new TeamNotFoundException("Team not found");
         teamRepository.deleteById(id);
     }
 
-    public void deleteTeam(String name) throws NoSuchObjectException{
-        if(!teamRepository.existsByTeamName(name)) throw new NoSuchObjectException("Team not found");
+    public void deleteTeam(String name) throws TeamNotFoundException {
+        if(!teamRepository.existsByTeamName(name)) throw new TeamNotFoundException("Team not found");
         teamRepository.deleteTeamByTeamName(name);
     }
 

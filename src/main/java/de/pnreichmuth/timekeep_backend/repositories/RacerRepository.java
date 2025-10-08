@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @SuppressWarnings("ALL")
 @Repository
 public interface RacerRepository extends JpaRepository<@NonNull Racer,@NonNull UUID> {
-    Racer findByName(String name);
+    Optional<Racer> getRacerByName(String name);
     List<Racer> findAllByName(String name);
 }

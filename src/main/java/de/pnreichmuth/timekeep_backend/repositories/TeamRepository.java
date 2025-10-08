@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface TeamRepository extends JpaRepository<@NonNull Team, @NonNull UUID> {
-    Team getTeamByTeamName(String name);
+    Optional<Team> getTeamByTeamName(String name);
     List<Team> getTeamsByFirstSemesterTeamIsTrue();
     List<Team> getTeamsByPassedStationsContains(Station station);
     void deleteTeamByTeamName(String name);
-
     boolean existsByTeamName(String name);
 }
