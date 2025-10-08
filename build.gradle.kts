@@ -28,7 +28,7 @@ dependencies {
 group = "de.pnreichmuth"
 version = "0.0.1-SNAPSHOT"
 description = "timekeep-backend"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_25
 
 publishing {
     publications.create<MavenPublication>("maven") {
