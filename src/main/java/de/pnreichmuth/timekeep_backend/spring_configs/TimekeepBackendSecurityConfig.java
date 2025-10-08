@@ -1,4 +1,4 @@
-package de.pnreichmuth.timekeep_backend;
+package de.pnreichmuth.timekeep_backend.spring_configs;
 
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

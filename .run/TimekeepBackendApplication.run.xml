@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TimekeepBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="timekeep-backend.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="de.pnreichmuth.timekeep_backend.TimekeepBackendApplication" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="de.pnreichmuth.timekeep_backend.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="resources/compose.yaml: Compose Deployment" run_configuration_type="docker-deploy" />
+      <option name="Make" enabled="true" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_delay 2s" />
+    </method>
+  </configuration>
+</component>
